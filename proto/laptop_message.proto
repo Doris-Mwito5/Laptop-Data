@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package goprojects.pcbook;
+
+import "processor_message.proto";
+import "memory_message.proto";
+import "storage_message.proto";
+import "screen_message.proto";
+import "keyboard_message.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "/pb";
+
+message Laptop {
+    string id = 1;
+    string brand = 2;
+    string name = 3;
+    CPU cpu = 4;
+    Memory ram = 5;
+    //can have multiple GPUs and storage
+    repeated GPU gpus = 6;
+    repeated Storage storage = 7;
+    Screen screen = 8;
+    Keyboard keyboard = 9;
+    //weight can be specified in either kgs or pounds
+    oneof weight {
+        double weight_kgs = 10;
+        double weight_lb = 11;
+    }
+    double price_usd = 13;
+    int64 release_year = 14;
+    //timestamp field to store the last update time in the system
+    google.protobuf.Timestamp updated_at = 15;
+
+}

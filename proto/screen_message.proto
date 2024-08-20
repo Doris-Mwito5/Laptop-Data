@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "/pb";
+
+message Screen {
+    //resolution has a close connection with screen and does not have a mening whn standing alone thus nested
+    message Resolution {
+        uint64 width = 1;
+        uint64 height = 2;
+    }
+    enum Panel {
+        UNKNOWN = 0;
+        OLED = 1;
+        IPS = 2;
+    }
+
+    float size_inch = 1;
+    Resolution resolution = 2;
+    Panel panel = 3;
+    bool multitouch = 4;
+}
